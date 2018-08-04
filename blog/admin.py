@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from .models import Post
+from .models import Post, Comment
 
 
 # admin.ModelAdmin
@@ -34,3 +35,6 @@ class PostAdmin(admin.ModelAdmin):
 
 # admin.site.register(Post, PostAdmin)
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
