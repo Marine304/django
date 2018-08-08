@@ -1,8 +1,10 @@
 # blog/models.py
 import re
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.forms import ValidationError
+
 
 def lnglat_validator(value):
     if not re.match(r'^([+-]?\d+\.?\d*),([+-]?\d+\.?\d*)$', value):
@@ -34,6 +36,10 @@ class Post(models.Model):
 
     def _str_(self):
         return self.title
+
+
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', args=[self.id])
 
 class Comment(models.Model):
     post = models.ForeignKey(Post)
