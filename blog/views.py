@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404 
 from django.shortcuts import get_object_or_404, render
 from .models import Post
 
@@ -11,9 +11,13 @@ def post_list(request):
         qs = qs.filter(title__icontains=q)
 
 
-    return render(request, 'blog/post_list.html', {
+    response = render(request, 'blog/post_list.html', {
         'post_list': qs,
+        'q': q,
     })
+    
+    response
+    return response
 
 def post_detail(request, id):
 #    try:
